@@ -1,36 +1,75 @@
 package dsa;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class StackTest {
+
+    MyStack stack;
+
+    @BeforeEach
+    public void setup() {
+        stack = new MyStack();
+    }
     @Test
     public void testStackIsEmpty() {
-        MyStack stack = new MyStack();
-        assertTrue(stack.isEmpty);
+        assertTrue(stack.isEmpty());
     }
 
     @Test
     public void testStackIsNotEmptyWhenIAddAnItem(){
-        MyStack stack = new MyStack();
-        stack.push();
-        assertFalse(stack.isEmpty);
+        stack.push("jjk");
+        assertFalse(stack.isEmpty());
     }
 
     @Test
     public void testAddingAndRemovingAnItemMakesStackEmpty(){
-        MyStack stack = new MyStack();
-        stack.push();
+        stack.push("jjk");
         stack.pop();
-        assertTrue(stack.isEmpty);
+        assertTrue(stack.isEmpty());
 
     }
 
     @Test
-    public void testStackIsEm(){
-        MyStack stack = new MyStack();
+    public void testAddingTwoElementsToStackAndPoppingOneDoesNotMakeStackEmpty(){
+        stack.push("kkd");
+        stack.push("s");
+        stack.pop();
+        assertFalse(stack.isEmpty());
     }
+
+    @Test
+    public void testThatPopReturnsLastItemAddedToStack(){
+        stack.push("james");
+        assertEquals(stack.pop(), "james");
+    }
+
+    @Test
+    public void testPopCantRemoveFromAnEmptyStack(){
+        stack.push("jjk");
+        stack.pop();
+        assertThrows(IllegalArgumentException.class, () -> stack.pop());
+
+    }
+
+    @Test
+    public void testPeekReturnsLastItemAddedToStack(){
+        stack.push("jjk");
+        stack.push("kkd");
+        assertEquals("kkd", stack.peek());
+    }
+
+
+    /*@Test
+    public void testStackCanNotContainMoreThanSetCapacity(){
+
+        stack.push("l");
+        stack.push("i think im cooked");
+        stack.push("hellppp");
+
+    }*/
+
 
 }
