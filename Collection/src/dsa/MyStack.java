@@ -21,6 +21,7 @@ public class MyStack {
         return items[numberOfItems];
     }
 
+
     public String peek() {
         return items[numberOfItems-1];
     }
